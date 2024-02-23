@@ -30,7 +30,7 @@ public class BobikBot extends TelegramLongPollingBot {
     private String processUserMessage(String userText) {
         userText = userText.toLowerCase();
 
-        if (userText.startsWith("hello, how are you?") || userText.startsWith("hello, how do you feel?")) {
+        if (userText.equals("hello, how are you?") || userText.equals("hello, how do you feel?")) {
             return "Hello, I am fine, and you?";
         } else if (userText.equals("i am fine") || userText.equals("i am well")) {
             return "It's nice to hear";

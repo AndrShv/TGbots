@@ -15,7 +15,7 @@ import java.sql.*;
 
 public class WeatherBot extends TelegramLongPollingBot {
 
-    static final String JDBC_URL = "jdbc:postgresql://ep-jolly-brook-a297kivr.eu-central-1.aws.neon.tech:5432/Bob1kGavvv?user=andrey678a&password=6xNohVCgZry7";
+    static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5433/postgres?user=postgres&password=password";
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -66,7 +66,10 @@ public class WeatherBot extends TelegramLongPollingBot {
 
     private void saveWeatherToDatabase(String chatId, String city, String weather) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL)) {
-            String createTableSQL = "CREATE TABLE IF NOT EXISTS weather_requests (id SERIAL PRIMARY KEY, chat_id TEXT, city TEXT, weather TEXT)";
+            String createTableSQL = "CREATE TABLE IF NOT EXISTS weather_requests " +
+                    "(id SERIAL PRIMARY KEY, " +
+                    "chat_id TEXT, city TEXT, " +
+                    "weather TEXT)";
             connection.createStatement().executeUpdate(createTableSQL);
 
             String insertSQL = "INSERT INTO weather_requests (chat_id, city, weather) VALUES (?, ?, ?)";
