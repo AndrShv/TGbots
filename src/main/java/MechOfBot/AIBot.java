@@ -56,7 +56,7 @@ public class AIBot extends TelegramLongPollingBot{
                 JSONObject message = firstChoice.getJSONObject("message");
                 return message.getString("content");
             }
-        } catch (IOException | URISyntaxException | JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
             return "Failed to get AI response.";
         }
